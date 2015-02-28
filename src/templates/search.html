@@ -1,0 +1,19 @@
+<!doctype html>
+<title>dodis and jdg gdl remixed</title>
+<h1>dodis and jdg gdl remixed</h1>
+<form method="post" action="search">
+<input name="search" {% if search %}value="{{search}}"{% endif %}>
+<input type="button" name="button" value="search">
+</form>
+{% if search %}
+    {% if result %}
+      <ul>
+        {% for entry in result %}
+        <li><a href="article/{{ entry.title }}">{{ entry.title }}</a><br>
+        {{ entry.description }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No results found</p>
+    {% endif %}
+{% endif %}
