@@ -1,19 +1,34 @@
 <!doctype html>
-<title>dodis and jdg gdl remixed</title>
-<h1>dodis and jdg gdl remixed</h1>
+<html lang="en"> 
+<head>
+<title>Diplomatic Documents and Swiss Newspapers in 1914</title>
+<meta charset="UTF-8" />
+</head>
+<body>
+<h1>Diplomatic Documentsand<br>Swiss Newspapers in 1914</h1>
 <form method="post" action="search">
-<input name="search" {% if search %}value="{{search}}"{% endif %}>
-<input type="button" name="button" value="search">
+<textarea name="search" cols="80">{% if search %}{{search}}{% endif %}</textarea><br>
+<input type="submit" name="button" value="search"><br>
+<input type="radio" name="search_type" value="text" checked="checked"> Text
+<input type="radio" name="search_type" value="topic"> Topic<br>
+Limit <input name="limit" value="25">
 </form>
-{% if search %}
+{% if list %}
     {% if result %}
       <ul>
         {% for entry in result %}
-        <li><a href="article/{{ entry.title }}">{{ entry.title }}</a><br>
-        {{ entry.description }}</li>
+        <li><a href="article/{{ entry.id }}">{{ entry.title }}</a><br>
+        {{ entry.newspaper }}, {{ entry.date }} ({{ entry.score }})</li>
         {% endfor %}
       </ul>
     {% else %}
       <p>No results found</p>
     {% endif %}
+{% else %}
+<h2> {{result.title}} </h2>
+<p>Journal: {{ result.newspaper }}<br>
+Date: {{ result.date }}</p>
+<p>{{ result.content }}</p>
 {% endif %}
+</body>
+</html>
