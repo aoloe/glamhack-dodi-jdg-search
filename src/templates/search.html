@@ -5,8 +5,8 @@
 <meta charset="UTF-8" />
 </head>
 <body>
-<h1>Diplomatic Documentsand<br>Swiss Newspapers in 1914</h1>
-<form method="post" action="search">
+<h1>Diplomatic Documents and<br>Swiss Newspapers in 1914</h1>
+<form method="post" action="/search">
 <textarea name="search" cols="80">{% if search %}{{search}}{% endif %}</textarea><br>
 <input type="submit" name="button" value="search"><br>
 <input type="radio" name="search_type" value="text" checked="checked"> Text
@@ -25,10 +25,12 @@ Limit <input name="limit" value="25">
       <p>No results found</p>
     {% endif %}
 {% else %}
+    {% if result and result.content %}
 <h2> {{result.title}} </h2>
 <p>Journal: {{ result.newspaper }}<br>
 Date: {{ result.date }}</p>
 <p>{{ result.content }}</p>
+    {% endif %}
 {% endif %}
 </body>
 </html>
